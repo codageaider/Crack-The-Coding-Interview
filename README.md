@@ -1,5 +1,5 @@
 # Crack-The-Coding-Interview  
-<b>Zoom Link:</b>   
+<b>Zoom Link:</b>   https://zoom.us/j/97112853620?pwd=UXpkVnVrcG82WVJ4bXloSHpTOFVLdz09
 
 
 **Quora Space for discussion Q n A:**  
