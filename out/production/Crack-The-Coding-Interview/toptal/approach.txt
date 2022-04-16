@@ -1,0 +1,50 @@
+(i)
+sort the array in decreasing order-> O(n logn)
+start halving the first element. <-- element will be the largest element
+now your array may not be sorted in decreasing order.
+After halving the element you will have to insert that element into the sorted array
+O(log n)
+
+There is a initial time = O( n logn)
+And at each step you will be O(log n)
+
+This will not give a 100% score on Toptal
+58% or 65%
+
+correctness is good
+but the performance is not good.
+Overall Time complexity of this algorithm = O( n log n)
+
+(ii)
+Just select the max number from the array half it  <-- O(n) time
+select max number from the new array half it...  <-- O(n)
+
+
+Time Complexity = O(n^2)
+
+(iii)
+Use Heap
+Book Cormen : Introduction to Algorithms
+Max-Heap
+Given a list of n elements you can build a max-heap in O(n) time
+A <---
+build a max heap out of it O(n) time
+take out the root element <-- this will be the maximum element because of the property of the max heap
+max-heapify <-- this operation restores the max-heap property and it takes O(log n) time
+Insertion and deletion in a heap
+
+O(n) time initially <-- one time operation to build the max-heap out of the given elements
+Then I remove the max element half it and put it back to heap <-- O( log n)
+Then again I remove the top element (max element) and half it and put it back to heap <-- O( log n)
+
+Time Complexity = O( n log n)
+This is not the accurate complexity.
+
+
+
+
+
+
+
+
+
