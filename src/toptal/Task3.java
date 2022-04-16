@@ -56,19 +56,24 @@ public class Task3 {
 
     private static int solution(int[] A) {
         PriorityQueue<Double> pq = new PriorityQueue<>(Collections.reverseOrder());
+        // This is the max-heap
         // Collections.reverseOrder is a comparator
         // By default the priority queue is a min-heap
         for (int elem : A)
             pq.add(Double.valueOf(elem));
+        // The above is building the max-heap
         Double initialSum = Double.valueOf(Arrays.stream(A).sum());
+        // This calculates the initial sum
         Double totalPollution = initialSum;
-        double aim = initialSum / 2;
+        double aim = initialSum / 2; // we need to keep halving till we reach the aim
         int count = 0;
         while (totalPollution > aim) {
-            Double maxElement = pq.remove();
-            pq.add(maxElement/2.0);
+            Double maxElement = pq.remove();// This will remove the root element of the heap
+            pq.add(maxElement/2.0); // Since we have removed the max element
+            // we are inserting half of it
             totalPollution=totalPollution-maxElement/2.0;
-            count++;
+            // recalculating the new sum
+            count++; // counts the number of operations
         }
 
         return count;
