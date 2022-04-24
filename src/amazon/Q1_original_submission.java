@@ -1,5 +1,5 @@
 package amazon;
-
+//15/15 test cases passed
 import java.util.*;
 
 public class Q1_original_submission {

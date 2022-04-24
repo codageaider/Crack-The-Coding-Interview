@@ -51,9 +51,76 @@ public class Q1 {
          System.out.println(findSongs(90, Arrays.asList(1, 10, 25, 35, 60)).equals(Arrays.asList(2, 3)));
 
     }
-
+// Total time complexity = O(n)
+    // space complexity = O(n)
     public static List<Integer> findSongs(int rideDuration, List<Integer> songDuration) {
         // key is the song duration and the value is the list of indexes where the song appears
+        // O(n)
+        Map<Integer, List<Integer>> map = buildSongDurationAndIndexMap(songDuration);
+        //O(n)
+        List<Pair> validPairs = findValidPairOfSongs(rideDuration, songDuration, map);
+        // we have built the validPairs  // x + y = rideDuration-30
+//        2) select the longest duration pair
+//        3) If two songs have the same duration then select the option with the lowest index
+       // O(n)
+        Pair pair = findMaxPairWithLowestIndex(validPairs);
+        List<Integer> output = new ArrayList<>();
+        output.add(pair.index1);output.add(pair.index2);
+        return output;
+    }
+//O(n) time
+    private static Pair findMaxPairWithLowestIndex(List<Pair> validPairs) {
+        Pair pair = null; // currentMaxSongsLength
+        for (Pair p : validPairs) {
+            if (pair == null) {
+                pair = p;
+            } else {
+                if (p.compareTo(pair) > 0)
+                    pair = p;
+            }
+        }
+        return pair;
+    }
+
+    // any two distinct song that sum to rideduration-30  is valid
+    // O(n) time
+    private static List<Pair> findValidPairOfSongs(int rideDuration, List<Integer> songDuration, Map<Integer, List<Integer>> map) {
+        List<Pair> validPairs = new ArrayList<>();
+        for (int i = 0; i < songDuration.size(); i++) {
+            int x = songDuration.get(i);
+            int y = rideDuration - x - 30;
+            /*We need a song with this durationin the songDuration list to make a pair
+             x is certainly there in the songDuration but if y is there then this is a probably canditate for the valid pair
+             */
+
+            if(!map.containsKey(y)){
+
+            } else {
+                // we need to avoid selection the song with the same duration and same index
+                if(x!=y){
+                    Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1=i;p.index2= map.get(y).get(0);
+                    validPairs.add(p);
+                } else {
+                     //  x and y are same
+                    List<Integer> indexes = map.get(x);
+                    if(indexes.size()==1){
+                        // we are selecting the same song
+                    } else {
+                        Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1= map.get(y).get(0);p.index2= map.get(y).get(1);
+                        validPairs.add(p);
+                    }
+                }
+            }
+        }
+        return validPairs;
+    }
+
+    /*
+    key, value map key is the duration and value is the list of indexes where it appears.
+    ~ time = size of songDuration = n
+    O(n)
+     */
+    private static Map<Integer, List<Integer>> buildSongDurationAndIndexMap(List<Integer> songDuration) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         // We are building the hashmap
         for (int i = 0; i < songDuration.size(); i++) {
@@ -66,46 +133,7 @@ public class Q1 {
                 map.put(duration, list);
             }
         }
-        List<Pair> validPairs = new ArrayList<>();
-        for (int i = 0; i < songDuration.size(); i++) {
-            int x = songDuration.get(i);
-            int y = rideDuration - x - 30; // We need a song with this durationin the songDuration list to make a pair
-            // x is certainly there in the songDuration but if y is there then this is a probably canditate for the valid pair
-            if(!map.containsKey(y)){
-
-            } else {
-                // we need to avoid selection the song with the same duration and same index
-                if(x!=y){
-                    Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1=i;p.index2=map.get(y).get(0);
-                    validPairs.add(p);
-                } else {
-                     //  x and y are same
-                    List<Integer> indexes = map.get(x);
-                    if(indexes.size()==1){
-                        // we are selecting the same song
-                    } else {
-                        Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1=map.get(y).get(0);p.index2=map.get(y).get(1);
-                        validPairs.add(p);
-                    }
-                }
-            }
-        }
-        // we have built the validPairs  // x + y = rideDuration-30
-//        2) select the longest duration pair
-//        3) If two songs have the same duration then select the option with the lowest index
-
-        Pair pair = null; // currentMaxSongsLength
-        for (Pair p : validPairs) {
-            if (pair == null) {
-                pair = p;
-            } else {
-                if (p.compareTo(pair) > 0)
-                    pair = p;
-            }
-        }
-        List<Integer> output = new ArrayList<>();
-        output.add(pair.index1);output.add(pair.index2);
-        return output;
+        return map;
     }
 
 }
