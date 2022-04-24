@@ -47,7 +47,7 @@ loop over the list of integers
 public class Q1 {
     public static void main(String[] args) {
 //        System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 110, 110, 100, 10, 100, 40, 1, 110, 110)));
-           System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
+          // System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
          System.out.println(findSongs(90, Arrays.asList(1, 10, 25, 35, 60)).equals(Arrays.asList(2, 3)));
 
     }
@@ -97,7 +97,7 @@ public class Q1 {
 
             } else {
                 // we need to avoid selection the song with the same duration and same index
-                if(x!=y){
+                if(x!=y && x<y){
                     Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1=i;p.index2= map.get(y).get(0);
                     validPairs.add(p);
                 } else {
