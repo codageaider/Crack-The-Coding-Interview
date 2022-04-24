@@ -41,24 +41,24 @@ loop over the list of integers
 
 (10,60) <-- this is something that will be returned.
 
-
+2) select the longest duration pair
 3) If two songs have the same duration then select the option with the lowest index
  */
 public class Q1 {
     public static void main(String[] args) {
-        System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 100, 10,100,40,1,110)));
-     //   System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
-       // System.out.println(findSongs(90, Arrays.asList(1, 10, 25, 35, 60)).equals(Arrays.asList(2, 3)));
+        System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 110, 110, 100, 10, 100, 40, 1, 110, 110)));
+        //   System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
+        // System.out.println(findSongs(90, Arrays.asList(1, 10, 25, 35, 60)).equals(Arrays.asList(2, 3)));
 
     }
 
-    public static List<Integer> findSongs(int rideDuration, List<Integer> songDuration){
+    public static List<Integer> findSongs(int rideDuration, List<Integer> songDuration) {
         // key is the song duration and the value is the list of indexes where the song appears
         Map<Integer, List<Integer>> map = new HashMap<>();
         // We are building the hashmap
-        for(int i=0;i<songDuration.size();i++){
+        for (int i = 0; i < songDuration.size(); i++) {
             Integer duration = songDuration.get(i);
-            if(map.containsKey(duration)){
+            if (map.containsKey(duration)) {
                 map.get(duration).add(i);
             } else {
                 List<Integer> list = new ArrayList<>();
@@ -66,9 +66,50 @@ public class Q1 {
                 map.put(duration, list);
             }
         }
-        System.out.println(map);
-     return new ArrayList<>();
+        List<Pair> validPairs = new ArrayList<>();
+        for (int i = 0; i < songDuration.size(); i++) {
+            int x = songDuration.get(i);
+            int y = rideDuration - x - 30; // We need a song with this durationin the songDuration list to make a pair
+            // x is certainly there in the songDuration but if y is there then this is a probably canditate for the valid pair
+        }
+        // we have built the validPairs  // x + y = rideDuration-30
+//        2) select the longest duration pair
+//        3) If two songs have the same duration then select the option with the lowest index
+
+        Pair pair = null; // currentMaxSongsLength
+        for (Pair p : validPairs) {
+            if (pair == null) {
+                pair = p;
+            } else {
+                if (p.compareTo(pair) > 0)
+                    pair = p;
+            }
+        }
     }
 
+}
 
+/*
+Valid pairs will be those the duration sum to rideduration -30
+ */
+class Pair implements Comparable {
+    int songDuration1;
+    int songDuration2;
+    int index1;
+    int index2;
+/*
+2) select the longest duration pair
+3) If two songs have the same duration then select the option with the lowest index
+ */
+    // compare method returns <0 is the first item < second item , >0 else ,  if equal it will return 0;
+    @Override
+    public int compareTo(Object o) {
+        Pair p1 = (Pair) o;
+        int compareValue = Integer.compare(Math.max(songDuration1, songDuration2), Math.max(p1.songDuration1, p1.songDuration2));
+        if (compareValue == 0) {
+            return Integer.compare(Math.min(index1, index2), Math.min(p1.index1, p1.index2));
+        } else {
+            return compareValue;
+        }
+    }
 }
