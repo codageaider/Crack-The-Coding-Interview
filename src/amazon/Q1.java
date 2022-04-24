@@ -45,6 +45,8 @@ loop over the list of integers
 3) If two songs have the same duration then select the option with the lowest index
  */
 public class Q1 {
+    // (x + y = rideduration - 30
+    //  x<y    (x,y)   (y,x)
     public static void main(String[] args) {
 //        System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 110, 110, 100, 10, 100, 40, 1, 110, 110)));
           // System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
