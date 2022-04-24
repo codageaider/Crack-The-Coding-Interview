@@ -48,8 +48,8 @@ public class Q1 {
     // (x + y = rideduration - 30
     //  x<y    (x,y)   (y,x)
     public static void main(String[] args) {
-//        System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 110, 110, 100, 10, 100, 40, 1, 110, 110)));
-          // System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
+      //  System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 110, 110, 100, 10, 100, 40, 1, 110, 110)));
+           System.out.println(findSongs(250, Arrays.asList(100, 180, 40, 120, 10)).equals(Arrays.asList(1, 2)));
          System.out.println(findSongs(90, Arrays.asList(1, 10, 25, 35, 60)).equals(Arrays.asList(2, 3)));
 
     }
@@ -65,9 +65,13 @@ public class Q1 {
 //        2) select the longest duration pair
 //        3) If two songs have the same duration then select the option with the lowest index
        // O(n)
+         if(validPairs.isEmpty()){
+             return Arrays.asList(-1,-1);
+         }
         Pair pair = findMaxPairWithLowestIndex(validPairs);
         List<Integer> output = new ArrayList<>();
-        output.add(pair.index1);output.add(pair.index2);
+        output.add(Math.min(pair.index1,pair.index2));
+        output.add(Math.max(pair.index1,pair.index2));
         return output;
     }
 //O(n) time
@@ -109,6 +113,7 @@ public class Q1 {
                         // we are selecting the same song
                     } else {
                         Pair p = new Pair();p.songDuration1=x;p.songDuration2=y;p.index1= map.get(y).get(0);p.index2= map.get(y).get(1);
+                        if(!validPairs.contains(p))
                         validPairs.add(p);
                     }
                 }
@@ -162,5 +167,22 @@ class Pair implements Comparable {
         } else {
             return compareValue;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair pair = (Pair) o;
+        return songDuration1 == pair.songDuration1 &&
+                songDuration2 == pair.songDuration2 &&
+                ((index1 == pair.index1 &&
+                index2 == pair.index2) || (index1 == pair.index2 &&
+                        index2 == pair.index1));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(songDuration1, songDuration2, index1, index2);
     }
 }
