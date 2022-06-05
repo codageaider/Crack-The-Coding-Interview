@@ -1,4 +1,4 @@
-package amazon;
+package amazon.q_1;
 
 import java.util.*;
 

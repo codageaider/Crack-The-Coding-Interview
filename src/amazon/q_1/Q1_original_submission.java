@@ -1,4 +1,4 @@
-package amazon;
+package amazon.q_1;
 //15/15 test cases passed
 import java.util.*;
 
