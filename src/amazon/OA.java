@@ -138,3 +138,9 @@ public class OA {
 }
 // In the optimized approach 26 * n
 // Instead of scanning for all the characters scan only those characyers that are there in the password
+
+// (ii) optimization.
+/*
+Maintain a map for each character that stores the count value.
+maintain a map for each character that stores the number of substrings without this character.
+ */
