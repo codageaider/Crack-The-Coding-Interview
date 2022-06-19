@@ -1,4 +1,8 @@
 package amazon;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /*
 
 https://github.com/codageaider/Crack-The-Coding-Interview/blob/main/src/amazon/OA.mp4
@@ -104,8 +108,11 @@ public class OA {
 
     private static long findPasswordStrength(String password) {
         long result=0;
-        for(char c='a';c<='z';c++){
-            result+=strengthContribution(c,password);
+        Set<Character> set = new HashSet<>();
+        for(Character ch:password.toCharArray())
+            set.add(ch);
+        for(Character ch: set){
+            result+=strengthContribution(ch,password);
         }
         return result;
     }
