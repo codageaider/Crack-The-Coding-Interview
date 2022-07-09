@@ -143,4 +143,5 @@ public class OA {
 /*
 Maintain a map for each character that stores the count value.
 maintain a map for each character that stores the number of substrings without this character.
+26 * n
  */
