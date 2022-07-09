@@ -38,7 +38,11 @@ So we stop
 
 - Generated all the letters that come after the letter E using map1
 - Generated all the letters that come before the letter E using map2
+
+Time Complexity = O(n) where n is the length of the string
+Space Complexity = O(n)
  */
+
 public class FindWords {
     public static void main(String[] args) {
         System.out.println(findWords(Arrays.asList("P>E","E>R","R>U")));
