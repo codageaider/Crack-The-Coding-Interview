@@ -95,6 +95,8 @@ public class Skyline {
 
     https://en.wikipedia.org/wiki/Stirling%27s_approximation
 https://mathworld.wolfram.com/StirlingsApproximation.html
+
+Algorithms Book: https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844
     Space Complexity: O(n)
      */
     public static int furtherBuilding(List<Integer> skyline, int bricks, int ladder) {
@@ -108,14 +110,15 @@ https://mathworld.wolfram.com/StirlingsApproximation.html
             else {
                 Integer minLadderJump = ladderJumpsQueue.peek();
                 if (minLadderJump == null) {// when the queue is empty, I haven't used any ladder
-                    if (ladder != 0) {
+                   if (ladder == 0 && jump <= bricks) {// use bricks
+                        bricks = bricks - jump;
+                    } else if(ladder==0 && jump>bricks){// ladders==0 and jump > bricks
+                        break;
+                    }  else {// the queue is empty
                         ladder--;
                         ladderJumpsQueue.offer(jump);
-
-                    } else if (ladder == 0 && jump <= bricks) {// use bricks
-                        bricks = bricks - jump;
-                    } else {// ladders==0 and jump > bricks
-                        break;
+/// This else condition will only occur once. And after that if add bricks the replacement in the else
+                       // part will ensure that we have the optimal number of bricks and ladders
                     }
                 } else {// I have ladders
                     // I have to make a climb of jump units
