@@ -80,11 +80,28 @@ public class Skyline {
         System.out.println(furtherBuilding(Arrays.asList(4, 12, 2, 7, 3, 18, 20, 3, 19), 10, 2) == 7);
     }
 
+    /*
+    Time Complexity:
+    n is the size of skyline or the numebr of buildings
+    (i) Every time we need to replace the ladder with bricks and place the ladder to climb the current building
+    we will need to fetch the element from the heap -> O(1)
+    and we will have to add the element to the heap -> O(log n)
+    and to delete - > O(log n)
+
+     --> O(n log n)
+    https://en.wikipedia.org/wiki/Binary_heap
+
+    Time Complexity = log1 + log 2 + ... log n  = log (n!) ~ n log n
+
+    https://en.wikipedia.org/wiki/Stirling%27s_approximation
+https://mathworld.wolfram.com/StirlingsApproximation.html
+    Space Complexity: O(n)
+     */
     public static int furtherBuilding(List<Integer> skyline, int bricks, int ladder) {
         Queue<Integer> ladderJumpsQueue = new PriorityQueue<>();
         int i;
         // i-> which building we need to reach next
-        for (i = 0; i < skyline.size() - 1; i++) {
+        for (i = 0; i < skyline.size() - 1; i++) {  // -> n loops
             int jump = skyline.get(i + 1) - skyline.get(i);
             if (jump <= 0)
                 continue;
