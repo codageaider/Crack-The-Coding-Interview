@@ -6,150 +6,113 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /*
-Question for recent Amazon virtual live coding round:
-https://github.com/codageaider/Crack-The-Coding-Interview/blob/main/src/amazon/live_round_q1/skyline-ladder-bricks.png
- */
+Suppose in any sequence of ladders and bricks you have used
+There is a climb of 10 units using bricks and 5 units using ladder
+and currently you are left with L ladders and B bricks
+1 ladder to make a climb of 10 units and 5 bricks to make a climb of 5 units
+L, B+5
+So we have more bricks now.
+If the climb of the ladder is less than the climb of the bricks then swap them
 
-/*
+10 units of climb using bricks and 3 units of climb using ladder
+perform the swap, L , B+7
 
-Suppose at any point there is a jump of j1 unit required to reach the next building
-Suppose that the minimal jump where the ladder was used had j2 units
-suppose j2<j1
+If we are making a swap, swap with the minimal climb ladder. This will ensure
+that you have more bricks to move forward.
 
-Ways to reach the next building
-(i) j1 bricks to reach the next building
-       L, B-j1
-(ii) A ladder to reach the next building.
-use bricks at the place where the ladder at j2 units was used.
-L, B-j2
+The moves should be optimal: There is no swap possible
+Algorithm:
+1) First use all the ladders and reach the furthest building possible
+2) Now no ladders are left
+3)
+(i) Suppose the climb is of 7 units and you have 5 units of bricks left
 
+     (1)
+     - you used a ladder to climb 2 units of height.
+     - replace it with bricks, 5-2=3 , bricks=3 and 1 ladder left
+     - using the ladder we can move ahead
+     (2)
+      the minimal jump made with ladder if of height H1
+      and the next jump that you need to make is of height H2
+      And you have exhausted all the ladders, and you are left with some bricks.
+      Suppose B bricks. B<H2 -> I cannot use the bricks to reach the next building.
 
-ex-2
-At building no. 4 we are left with Ladders=0 and bricks = 10
-How do I reach the 5th building? Use bricks or ladders
-If I use bricks to reach the 5th building L=0, B-15
-L=0, B-5
+      (3)
+      I replace the ladder at height H1 with bricks.
+          if B<H1 -> swap is not possible
+          -> There are no ladders and not sufficient bricks to climb the next building.
+              and the minimal ladder jump is greater than the number of bricks we are left with.
+              A swap is not possible.
+       We have reached the farthest building possible.
 
-Given any series of ladders and bricks to reach the further building.
-Where you used b bricks to climb to the next building
-and you used a ladder to climb to a building of height <b;
-If you replace the bricks  and ladders used at these two positions
-Then you will be left with more bricks.
+       (4) I replace the ladder at the point of climb of H1 units.
+             if B>=H1 -> A swap is possible
+             B-H1 bricks left and an additional ladder left.
+             Using this I can reach the next building.
 
-Main Idea: replace the ladder of minimal jump with bricks if the current jump
-is higher than it.
-Using this approach we will be left with more ladders and bricks.
-That means using this approach we have optimized the numebrs of bricks and ladders
-we have at any point in time.
+       (5) B >=H2 , that means we have sufficient number of bricks to reach the next building.
+            Should I use bricks or should I use ladder?
+            To get a ladder we need a swap
+            If the ladder of the minimal possible climb <H2 then I can use bricks here and
+            ladder at the current position.
 
-Example: You reached the current building by using 100 bricks (100 units)
-and at some previous point in time you used a ladder to climb 50 units
-currently L , B -> (L,B-100) ->(L,B-50)
+// WE always swap with the ladder with the minimal climb;
+// We will need to extract the minimum element from the ladder climbs array
+// -> O(n^2)
+// Min Heap:E
+Extract -> O(1)
+Insertion -> O(log n)
+Deletion -> O(log n)
 
-minHeap
-Whenever I use a ladder for jumping j units
-minHeap.add(j) to the minheap
+Using min heap we can solve this problem in O(n log n)
+Java has PriorityQueue for MinHeap
+offer() -> adds an element to the PQ
+poll() -> This removes the minimum element from PQ
+peek() -> return the minimum element from the PQ. But it won't remove it like poll()
+Time Complexity:
 
-pseudocode:
-loop over the building heights
-    currentjumpreq to reach the next building
-        if currentjumpreq > minHeap.get()
-            then interchange the use of bricks and ladders
-        else {
-            // if we have ladder use it.
-            else {
-                check if we have the required number of bricks.
-
-            }
-
-        }
-
-Ensure that at no point you should have a jump with bricks which is higher
-than the minimal ladder jump.
-
-at building i I want the max ladders and max bricks left.
-Reach jump ladder, 
-ensure it is optimal 
-
-use bricks, ensure it is optimal
-
+Space Complexity:
  */
 public class Skyline {
     public static void main(String[] args) {
-        System.out.println(furtherBuilding(Arrays.asList(4, 2, 20, 1, 5), 1, 4) == 4);
-        System.out.println(furtherBuilding(Arrays.asList(4, 12, 2, 7, 3, 18, 20, 3, 19), 10, 2) == 7);
+        System.out.println(furthestBuilding(Arrays.asList(4,2,20,1,5),1,4));// 4
+        System.out.println(furthestBuilding(Arrays.asList(4,12,2,7,3,18,20,3,19),10,2)); //7
     }
 
-    /*
-    Time Complexity:
-    n is the size of skyline or the numebr of buildings
-    (i) Every time we need to replace the ladder with bricks and place the ladder to climb the current building
-    we will need to fetch the element from the heap -> O(1)
-    and we will have to add the element to the heap -> O(log n)
-    and to delete - > O(log n)
-
-     --> O(n log n)
-    https://en.wikipedia.org/wiki/Binary_heap
-
-    Time Complexity = log1 + log 2 + ... log n  = log (n!) ~ n log n
-
-    https://en.wikipedia.org/wiki/Stirling%27s_approximation
-https://mathworld.wolfram.com/StirlingsApproximation.html
-
-Algorithms Book: https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844
-    Space Complexity: O(n)
-     */
-    public static int furtherBuilding(List<Integer> skyline, int bricks, int ladder) {
-        Queue<Integer> ladderJumpsQueue = new PriorityQueue<>();
-        int i;
-        // i-> which building we need to reach next
-        for (i = 0; i < skyline.size() - 1; i++) {  // -> n loops
-            int jump = skyline.get(i + 1) - skyline.get(i);
+    public static int furthestBuilding(List<Integer> skyline, int bricks, int ladder) {
+        Queue<Integer> ladderClimbsHeap = new PriorityQueue<>();
+        int currBuilding;
+        for (currBuilding = 0; currBuilding < skyline.size() - 1; currBuilding++) {
+            int jump = skyline.get(currBuilding + 1) - skyline.get(currBuilding);
             if (jump <= 0)
                 continue;
-            else {
-                Integer minLadderJump = ladderJumpsQueue.peek();
-                if (minLadderJump == null) {// when the queue is empty, I haven't used any ladder
-                   if (ladder == 0 && jump <= bricks) {// use bricks
-                        bricks = bricks - jump;
-                    } else if(ladder==0 && jump>bricks){// ladders==0 and jump > bricks
-                        break;
-                    }  else {// the queue is empty
-                        ladder--;
-                        ladderJumpsQueue.offer(jump);
-/// This else condition will only occur once. And after that if add bricks the replacement in the else
-                       // part will ensure that we have the optimal number of bricks and ladders
-                    }
-                } else {// I have ladders
-                    // I have to make a climb of jump units
-                    // can I use bricks a ladder too
-                    if (bricks >= jump) {
-                        if (minLadderJump < jump) {
-                            bricks = bricks - minLadderJump;
-                            ladderJumpsQueue.poll();
-                            ladderJumpsQueue.offer(jump);
-                        } else {
-                            bricks = bricks - jump;
-                        }
-                    } else {
-                        if (minLadderJump <= bricks) {
-                            bricks = bricks - minLadderJump;
-                            ladderJumpsQueue.poll();
-                            ladderJumpsQueue.offer(jump);
-                        } else if (ladder == 0)
-                            break;
-                        else if (ladder != 0) {
-                            ladder--;
-                            ladderJumpsQueue.offer(jump);
-                        }
-                    }
-
-                }
-
+            if (ladder != 0) {
+                ladder--;
+                ladderClimbsHeap.offer(jump);
+                continue;
             }
-
-
+            if (bricks < jump) {// We cannot climb to the next building with the given number of bricks
+                int minLadderJump = ladderClimbsHeap.peek();
+                if (bricks < minLadderJump)
+                    break;
+                if (bricks >= minLadderJump) {
+                    ladderClimbsHeap.poll();
+                    bricks = bricks - minLadderJump;
+                }
+            } else if (bricks >= jump) { // It's possible to make the jump using the bricks
+                // if we use the bricks to go to the next building we will have to use jump no. of bricks
+                int minLadderJump = ladderClimbsHeap.peek();
+                if (jump >= minLadderJump) {// use bricks instead of ladder at this min ladder jump position
+                    bricks = bricks - minLadderJump;
+                    ladderClimbsHeap.poll();
+                    ladderClimbsHeap.offer(jump);
+                    continue;
+                } else if (jump < minLadderJump) {
+                    bricks = bricks - jump;
+                    continue;
+                }
+            }
         }
-        return i;
+        return currBuilding;
     }
 }
