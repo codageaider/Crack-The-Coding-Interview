@@ -100,8 +100,8 @@ If there are n buildings then space complexity = O(n)
  */
 public class Skyline {
     public static void main(String[] args) {
-        System.out.println(furthestBuilding(Arrays.asList(4,2,20,1,5),1,4));// 4
-        System.out.println(furthestBuilding(Arrays.asList(4,12,2,7,3,18,20,3,19),10,2)); //7
+        System.out.println(furthestBuilding(Arrays.asList(4, 2, 20, 1, 5), 4, 1));// 4
+        System.out.println(furthestBuilding(Arrays.asList(4, 12, 2, 7, 3, 18, 20, 3, 19), 10, 2)); //7
     }
 
     public static int furthestBuilding(List<Integer> skyline, int bricks, int ladder) {
@@ -116,26 +116,26 @@ public class Skyline {
                 ladderClimbsHeap.offer(jump);
                 continue;
             }
+            Integer minLadderJump = ladderClimbsHeap.peek();
             if (bricks < jump) {// We cannot climb to the next building with the given number of bricks
-                int minLadderJump = ladderClimbsHeap.peek();
-                if (bricks < minLadderJump)
+                if (minLadderJump == null || bricks < minLadderJump)
                     break;
                 if (bricks >= minLadderJump) {
+                    bricks = bricks - minLadderJump;
                     ladderClimbsHeap.poll();
                     ladderClimbsHeap.offer(jump);
-                    bricks = bricks - minLadderJump;
                     continue;
                 }
-            } else if (bricks >= jump) { // It's possible to make the jump using the bricks
+            } else if (bricks >= jump) {// It's possible to make the jump using the bricks
+                if (minLadderJump == null || jump < minLadderJump) {
+                    bricks = bricks - jump;
+                    continue;
+                }
                 // if we use the bricks to go to the next building we will have to use jump no. of bricks
-                int minLadderJump = ladderClimbsHeap.peek();
                 if (jump >= minLadderJump) {// use bricks instead of ladder at this min ladder jump position
                     bricks = bricks - minLadderJump;
                     ladderClimbsHeap.poll();
                     ladderClimbsHeap.offer(jump);
-                    continue;
-                } else if (jump < minLadderJump) {
-                    bricks = bricks - jump;
                     continue;
                 }
             }
