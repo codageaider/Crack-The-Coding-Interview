@@ -69,9 +69,34 @@ Java has PriorityQueue for MinHeap
 offer() -> adds an element to the PQ
 poll() -> This removes the minimum element from PQ
 peek() -> return the minimum element from the PQ. But it won't remove it like poll()
-Time Complexity:
 
-Space Complexity:
+Time Complexity:
+At each loop we either do a swap or don't do a swap
+If we do a swap then
+At the ith iteration of the loop the min heap will contain at most i elements
+Also the min heap cannot contain more than ladder elements;
+
+O(log 1) + O(log 2) + O(log 3) + ... O(log n) = O( log 1 + log 2 + .... + log n) = O(log n!)
+Sterling's approximation. n!~n log n
+So the time Complexity of this code = O(n log n)
+
+(ii) Another way to approach time complexity
+n log n
+
+(iii)
+At any time the priority queue will have at most ladder elements
+m = min(skyline.size(),ladder)
+The queue will never have more than m elements ever
+insert and delete operation on the queue will take at most O(log m) time
+Since we are looping n time. So the time complexity = n * log m
+
+--> Introduction to Algorithms by Cormen
+
+Space Complexity: O(min(skyline.size(),ladder)
+To express it more simply:
+If there are n buildings then space complexity = O(n)
+
+
  */
 public class Skyline {
     public static void main(String[] args) {
@@ -97,7 +122,9 @@ public class Skyline {
                     break;
                 if (bricks >= minLadderJump) {
                     ladderClimbsHeap.poll();
+                    ladderClimbsHeap.offer(jump);
                     bricks = bricks - minLadderJump;
+                    continue;
                 }
             } else if (bricks >= jump) { // It's possible to make the jump using the bricks
                 // if we use the bricks to go to the next building we will have to use jump no. of bricks
