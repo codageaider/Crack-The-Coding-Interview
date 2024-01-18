@@ -1,0 +1,101 @@
+Meta Round-1 Virtual Live Interview Questions:
+
+Q1: Given a string S consisting of lowercase English characters, determine if you make it a palindrome by removing at most 1 character
+
+- Given a string S if it's a palindrome -> true
+- if I can remove a single character from S and make the resulting string a palindrome -> true
+else
+    return false
+
+isPalindrome(string S)
+
+boolean checkIfMadePalindrome(string S){
+    if(isPalindrome(S))
+           return true;
+    for(int i=0;i<S.length;i++)  ---> N times
+         string s2=S.remove(i);
+         if(isPalindrome(s2))   ----> N steps
+            return true;
+    return false;
+}
+Time Complexityu: isPalindome -> O(N) N is the length of the string.
+Algorithm: O(N^2)
+
+Time Complexity of the below/new approach -> O(N)
+- make two points left and right. left->0 right -> n-1  where n is the length of the string
+- if s[left]==s[right] -> left++, right--
+- if s[left]!=s[right] -> We must remove either s[left] or s[right] to make it a palindrome
+  case 1: remove left
+         if(isPalindome(S.remove(left))
+  case 2: remove right
+         if(isPalindome(S.remove(right))
+  if(!isPalindrome(S.remove(left)) && ! isPalindome(S.remove(right)))
+    return false;
+
+  return true;
+
+TimeComplexity -> O(N)
+
+
+
+
+Q2: Given an array of intervals where intervals[i]= [starti, endi], merge all overlaping intervals, and return an array of the non-overlapping
+intervals that cover all the intervals in the input
+
+
+input =
+[[1,3],[2,6],[8,10],[15,18]] -> [[1,6], [8,10],[15,18]]
+[[1,3]] , [2,6] -> [[1,6]]
+[[1,6]] , [8,10] -> [[1,6],[8,10]]
+[[1,6],[8,10]] , [15,18] ->
+output = [[1,6],[8,10],[15,18]]
+
+
+[[1,4],[2,5],[3,6]]-> [[1,6]]
+
+
+[[1,4]], [2,5] -> [[1,5]]
+[[1,5]], [3,6] -> [[1,6]]
+
+step 1: To sort the intervals in ascending orders based on the start index.
+result=[[start0, end0]]
+for interval : intervals:
+   if last element of result and interval overlap:
+        pull out the last element of the result and merge it with the curren interval and insert it back into the result list.
+   else
+        append the interval to the result list
+
+O(N log N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
