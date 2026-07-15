@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {"category_id":"ELEC","name":"Electronics","parent_id":null},
+    {"category_id":"ELEC-MOB","name":"Cell Phones & Accessories","parent_id":"ELEC"},
+    {"category_id":"ELEC-MOB-UNL","name":"Unlocked Cell Phones","parent_id":"ELEC-MOB"},
+    {"category_id":"ELEC-MOB-ACC","name":"Accessories","parent_id":"ELEC-MOB"},
+    {"category_id":"ELEC-MOB-CASE","name":"Cases, Holsters & Clips","parent_id":"ELEC-MOB"},
+    {"category_id":"ELEC-CAM","name":"Camera & Photo","parent_id":"ELEC"},
+    {"category_id":"ELEC-CAM-DIG","name":"Digital Cameras","parent_id":"ELEC-CAM"},
+    {"category_id":"ELEC-CAM-DSLR","name":"DSLR Cameras","parent_id":"ELEC-CAM"},
+    {"category_id":"ELEC-CAM-MIR","name":"Mirrorless Cameras","parent_id":"ELEC-CAM"},
+    {"category_id":"ELEC-CAM-VID","name":"Video","parent_id":"ELEC-CAM"},
+    {"category_id":"ELEC-CAM-ACT","name":"Sports & Action Video Cameras","parent_id":"ELEC-CAM"},
+    {"category_id":"ELEC-SEC","name":"Security & Surveillance","parent_id":"ELEC"},
+    {"category_id":"ELEC-SEC-CAM","name":"Surveillance Cameras","parent_id":"ELEC-SEC"},
+    {"category_id":"ELEC-SEC-HOME","name":"Home Security Systems","parent_id":"ELEC-SEC"},
+    {"category_id":"HOME","name":"Home & Kitchen","parent_id":null},
+    {"category_id":"HOME-KIT","name":"Kitchen & Dining","parent_id":"HOME"},
+    {"category_id":"HOME-FURN","name":"Furniture","parent_id":"HOME"},
+    {"category_id":"HOME-FURN-BED","name":"Bedroom Furniture","parent_id":"HOME-FURN"},
+    {"category_id":"HOME-FURN-LIV","name":"Living Room Furniture","parent_id":"HOME-FURN"},
+    {"category_id":"BOOKS","name":"Books","parent_id":null}
+  ]
+}

@@ -1,0 +1,28 @@
+{"product_id":"P1001","name":"Samsung Galaxy S24 Ultra","category_id":"ELEC-MOB-UNL","region":"US","popularity_score":97}
+{"product_id":"P1002","name":"Google Pixel 9 Pro","category_id":"ELEC-MOB-UNL","region":"US","popularity_score":90}
+{"product_id":"P1003","name":"OnePlus 12","category_id":"ELEC-MOB-UNL","region":"IN","popularity_score":96}
+{"product_id":"P1004","name":"Samsung Galaxy S24 Ultra","category_id":"ELEC-MOB-UNL","region":"IN","popularity_score":99}
+{"product_id":"P1005","name":"Anker USB-C Cable 3-Pack","category_id":"ELEC-MOB-ACC","region":"US","popularity_score":81}
+{"product_id":"P1006","name":"Anker Power Bank 20000mAh","category_id":"ELEC-MOB-ACC","region":"US","popularity_score":76}
+{"product_id":"P1007","name":"Anker Power Bank 20000mAh","category_id":"ELEC-MOB-ACC","region":"IN","popularity_score":91}
+{"product_id":"P1008","name":"OtterBox Defender Series","category_id":"ELEC-MOB-CASE","region":"US","popularity_score":84}
+{"product_id":"P1009","name":"Spigen Tough Armor Case","category_id":"ELEC-MOB-CASE","region":"US","popularity_score":79}
+{"product_id":"P1010","name":"Canon EOS R6 Mark II","category_id":"ELEC-CAM-MIR","region":"US","popularity_score":94}
+{"product_id":"P1011","name":"Sony Alpha a7 IV","category_id":"ELEC-CAM-MIR","region":"US","popularity_score":87}
+{"product_id":"P1012","name":"Sony Alpha a7 IV","category_id":"ELEC-CAM-MIR","region":"IN","popularity_score":95}
+{"product_id":"P1013","name":"Canon EOS 90D","category_id":"ELEC-CAM-DSLR","region":"US","popularity_score":85}
+{"product_id":"P1014","name":"Nikon D850","category_id":"ELEC-CAM-DSLR","region":"US","popularity_score":78}
+{"product_id":"P1015","name":"GoPro HERO12 Black","category_id":"ELEC-CAM-ACT","region":"US","popularity_score":89}
+{"product_id":"P1016","name":"DJI Osmo Action 4","category_id":"ELEC-CAM-ACT","region":"US","popularity_score":80}
+{"product_id":"P1017","name":"DJI Osmo Action 4","category_id":"ELEC-CAM-ACT","region":"IN","popularity_score":93}
+{"product_id":"P1018","name":"Ring Indoor Cam","category_id":"ELEC-SEC-CAM","region":"US","popularity_score":82}
+{"product_id":"P1019","name":"Blink Outdoor 4","category_id":"ELEC-SEC-CAM","region":"US","popularity_score":77}
+{"product_id":"P1020","name":"Ring Alarm Pro 8-Piece Kit","category_id":"ELEC-SEC-HOME","region":"US","popularity_score":74}
+{"product_id":"P1021","name":"SimpliSafe 10-Piece System","category_id":"ELEC-SEC-HOME","region":"US","popularity_score":73}
+{"product_id":"P1022","name":"Ring Indoor Cam","category_id":"ELEC-SEC-CAM","region":"IN","popularity_score":92}
+{"product_id":"P1023","name":"Instant Pot Duo 7-in-1","category_id":"HOME-KIT","region":"US","popularity_score":98}
+{"product_id":"P1024","name":"Ninja Air Fryer Pro","category_id":"HOME-KIT","region":"US","popularity_score":95}
+{"product_id":"P1025","name":"KitchenAid Stand Mixer","category_id":"HOME-KIT","region":"US","popularity_score":93}
+{"product_id":"P1026","name":"Zinus Memory Foam Mattress","category_id":"HOME-FURN-BED","region":"US","popularity_score":92}
+{"product_id":"P1027","name":"IKEA Kallax Shelf","category_id":"HOME-FURN-LIV","region":"US","popularity_score":88}
+{"product_id":"P1028","name":"The Pragmatic Programmer","category_id":"BOOKS","region":"US","popularity_score":91}

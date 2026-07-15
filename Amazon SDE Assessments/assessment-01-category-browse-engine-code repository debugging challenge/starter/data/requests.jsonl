@@ -1,0 +1,6 @@
+{"query_id":"q001","category_id":"ELEC","region":"US","max_results":5}
+{"query_id":"q005","category_id":"ELEC-MOB-UNL","region":"IN","max_results":5}
+{"query_id":"q008","category_id":"ELEC-CAM","region":"US","max_results":3}
+{"query_id":"q028","category_id":"ELEC-MOB","region":"IN"}
+{"query_id":"q_no_region_matches","category_id":"ELEC","region":"EU","max_results":10}
+{"query_id":"q_unknown_category","category_id":"UNKNOWN","region":"US","max_results":10}
